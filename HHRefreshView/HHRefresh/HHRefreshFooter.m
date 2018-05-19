@@ -48,12 +48,20 @@
     }
     
     // 下拉刷新时，避免再次刷新。
-    if (self.refreshState == RefreshStateWillRefreshing || self.refreshState == RefreshStateDidBeginRefreshing) {
+    if (self.refreshState == RefreshStateWillRefreshing || self.refreshState == RefreshStateDidBeginRefreshing || self.refreshState == RefreshStateWillEndRefreshing) {
         return;
     }
     
     // 上拉 footer 完全显示时：
-    if (self.scrollView.contentOffset.y + self.originalInsets.top > self.scrollView.contentSize.height + [self refreshHeight] - [self scrollHeight]) {
+    CGFloat moveUpH = self.scrollView.contentOffset.y + self.originalInsets.top;
+    CGFloat outFooterH = 0;
+    
+    if (self.scrollView.contentSize.height < [self scrollHeight]) {
+        outFooterH = moveUpH - [self refreshHeight];
+    }else {
+        outFooterH = moveUpH - (self.scrollView.contentSize.height + [self refreshHeight] - [self scrollHeight]);
+    }
+    if (outFooterH > 0) {
         //拖动中：将状态设为 松手刷新
         if (self.scrollView.isDragging) {
             // 避免重复设置
@@ -72,20 +80,32 @@
             [self refreshEndPull];
         }
     }
-  
 }
 
 - (void)willBeginRefresh {
     [super willBeginRefresh];
-    // 进入刷新状态，将insets设置为 footer完全显示时的insets。
+    // 进入刷新状态，将insets设置为 footer完全显示时的insets； 滚动footer至完全显示出来。
     __block CGFloat inset = self.originalInsets.bottom + self.bounds.size.height;
     __block UIEdgeInsets insets = self.scrollView.contentInset;
     insets.bottom = inset;
     [UIView animateWithDuration:animationTime animations:^{
         self.scrollView.contentInset = insets;
+        [self showFooter];
     } completion:^(BOOL finished) {
         [self didBeginRefresh];
     }];
+}
+
+- (void)showFooter {
+    //滚动footer至完全显示出来
+    CGFloat offsetY = 0;
+    CGFloat offsetX = self.scrollView.contentOffset.x;
+    if (self.scrollView.contentSize.height < [self scrollHeight]) {
+        offsetY = - self.originalInsets.top + [self refreshHeight];
+    }else {
+        offsetY = -self.originalInsets.top + self.scrollView.contentSize.height + [self refreshHeight] - [self scrollHeight];
+    }
+    [self.scrollView setContentOffset:CGPointMake(offsetX, offsetY) animated:NO];
 }
 
 - (void)willEndRefresh {

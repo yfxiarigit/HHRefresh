@@ -56,7 +56,7 @@
     
     _header = [HHCustomRefreshHeader headerWithRefreshingBlock:^{
         [self loadData];
-        [_footer resetNoMoreData];
+//        [_footer resetNoMoreData];
     }];
     [_tableView addSubview:_header];
     
@@ -84,7 +84,7 @@
 
 - (void)loadMore {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_footer endRefreshingWithNoMoreData];
+        [_footer endRefresh];
     });
 }
 

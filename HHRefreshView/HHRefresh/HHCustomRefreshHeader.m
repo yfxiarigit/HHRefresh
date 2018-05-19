@@ -32,7 +32,7 @@
     _label = [[UILabel alloc] init];
     _label.backgroundColor = [UIColor redColor];
     _label.text = @"下拉刷新";
-//    [self addSubview:_label];
+    //    [self addSubview:_label];
     
     _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_refresh"]];
     _imageView.contentMode = UIViewContentModeCenter;
@@ -50,10 +50,12 @@
 - (void)refreshWillPull {
     [super refreshWillPull];
     _label.text = @"松开刷新";
+    NSLog(@"松开刷新");
 }
 - (void)willBeginRefresh {
     [super willBeginRefresh];
     _label.text = @"正在刷新";
+    NSLog(@"正在刷新");
     [_imageView.layer removeAllAnimations];
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.duration = animationTime;
@@ -66,12 +68,14 @@
 - (void)willEndRefresh {
     [super willEndRefresh];
     _label.text = @"结束刷新";
+    NSLog(@"结束刷新");
 }
 
 - (void)didEndRefresh {
     [super didEndRefresh];
     _label.text = @"下拉刷新";
     [_imageView.layer removeAllAnimations];
+    NSLog(@"下拉刷新");
 }
 
 - (void)refreshEndPull {
@@ -86,3 +90,4 @@
 }
 
 @end
+

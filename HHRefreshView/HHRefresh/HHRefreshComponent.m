@@ -106,7 +106,7 @@
 - (void)scrollViewContentOffsetDidChange:(CGPoint)contentOffset {}
 
 - (void)beginRefresh {
-    if (self.refreshState == RefreshStateDidBeginRefreshing || self.refreshState == RefreshStateWillRefreshing) return;
+    if (self.refreshState == RefreshStateDidBeginRefreshing || self.refreshState == RefreshStateWillRefreshing || self.refreshState == RefreshStateWillEndRefreshing) return;
     [self willBeginRefresh];
 }
 
@@ -131,7 +131,7 @@
 }
 
 - (void)didEndRefresh {
-    self.refreshState = RefreshStateEndRefresh;
+    self.refreshState = RefreshStateDidEndRefreshing;
 }
 
 - (void)refreshWillPull {
@@ -153,3 +153,4 @@
 - (void)refreshPullingWithPercent:(CGFloat)percent {}
 
 @end
+

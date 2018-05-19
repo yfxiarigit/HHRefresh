@@ -95,16 +95,16 @@
 		C0F573BC20B016400012D4E3 /* HHRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				C0F573BD20B016400012D4E3 /* HHCustomRefreshHeader.m */,
-				C0F573BE20B016400012D4E3 /* HHRefreshHeader.h */,
-				C0F573BF20B016400012D4E3 /* HHRefreshFooter.h */,
 				C0F573C020B016400012D4E3 /* HHRefreshComponent.h */,
-				C0F573C120B016400012D4E3 /* HHCustomFooterView.h */,
 				C0F573C220B016400012D4E3 /* HHRefreshComponent.m */,
-				C0F573C320B016400012D4E3 /* HHRefreshFooter.m */,
+				C0F573BE20B016400012D4E3 /* HHRefreshHeader.h */,
 				C0F573C420B016400012D4E3 /* HHRefreshHeader.m */,
+				C0F573BF20B016400012D4E3 /* HHRefreshFooter.h */,
+				C0F573C320B016400012D4E3 /* HHRefreshFooter.m */,
 				C0F573C520B016400012D4E3 /* HHCustomRefreshHeader.h */,
+				C0F573BD20B016400012D4E3 /* HHCustomRefreshHeader.m */,
 				C0F573C620B016400012D4E3 /* HHCustomFooterView.m */,
+				C0F573C120B016400012D4E3 /* HHCustomFooterView.h */,
 			);
 			path = HHRefresh;
 			sourceTree = "<group>";

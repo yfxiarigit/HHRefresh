@@ -78,15 +78,23 @@
 
 - (void)willBeginRefresh {
     [super willBeginRefresh];
-    // 进入刷新状态，将insets设置为 header完全显示时的insets。
+    // 进入刷新状态，将insets设置为 header完全显示时的insets; 滚动header至完全显示出来。
     __block CGFloat inset = self.originalInsets.top + self.bounds.size.height;
     __block UIEdgeInsets insets = self.scrollView.contentInset;
     insets.top = inset;
     [UIView animateWithDuration:animationTime animations:^{
         self.scrollView.contentInset = insets;
+        [self showHeader];
     } completion:^(BOOL finished) {
         [self didBeginRefresh];
     }];
+}
+
+- (void)showHeader {
+    // 滚动header至完全显示出来。
+    CGPoint offset = self.scrollView.contentOffset;
+    offset.y = - (self.originalInsets.top + self.bounds.size.height);
+    [self.scrollView setContentOffset:offset animated:NO];
 }
 
 - (void)willEndRefresh {
@@ -109,3 +117,5 @@
     [super placeSubviews];
 }
 @end
+
+

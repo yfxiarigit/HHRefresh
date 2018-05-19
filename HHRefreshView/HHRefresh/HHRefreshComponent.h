@@ -65,3 +65,4 @@ typedef void (^HHRefreshComponentRefreshingBlock)(void);
 /** 拖拽的比例，在非刷新状态时，回调。 */
 - (void)refreshPullingWithPercent:(CGFloat)percent NS_REQUIRES_SUPER;
 @end
+

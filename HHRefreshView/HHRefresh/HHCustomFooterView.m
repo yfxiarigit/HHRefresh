@@ -20,27 +20,32 @@
     _label.backgroundColor = [UIColor greenColor];
     _label.text = @"上拉加载";
     [self addSubview:_label];
+    NSLog(@"上拉加载");
 }
 
 - (void)refreshWillPull {
     [super refreshWillPull];
     _label.text = @"松开加载";
+    NSLog(@"松开加载");
 }
 
 - (void)refreshEndPull {
     [super refreshEndPull];
     _label.text = @"上拉刷新";
+    NSLog(@"上拉刷新");
 }
 
 
 - (void)didBeginRefresh {
     [super didBeginRefresh];
     _label.text = @"正在加载";
+    NSLog(@"正在加载");
 }
 
 - (void)willEndRefresh {
     [super willEndRefresh];
     _label.text = @"结束刷新";
+    NSLog(@"结束刷新");
 }
 
 - (void)didEndRefresh {
@@ -50,6 +55,7 @@
     }else {
         _label.text = @"上拉加载";
     }
+    NSLog(@"上拉加载");
 }
 
 + (CGFloat)refreshHeight {
@@ -66,3 +72,4 @@
 }
 
 @end
+
