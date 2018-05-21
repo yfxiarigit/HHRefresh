@@ -14,6 +14,8 @@
 		C05EFE0820AD6A9F007A84EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05EFE0620AD6A9F007A84EB /* LaunchScreen.storyboard */; };
 		C05EFE0B20AD6A9F007A84EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C05EFE0A20AD6A9F007A84EB /* main.m */; };
 		C05EFE1320AD6C93007A84EB /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05EFE1220AD6C93007A84EB /* CustomCell.m */; };
+		C0EBA37920B273E400B625E7 /* HHRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EBA37820B273E400B625E7 /* HHRefreshGifHeader.m */; };
+		C0EBA37C20B27BDA00B625E7 /* HHRefreshGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EBA37B20B27BDA00B625E7 /* HHRefreshGifFooter.m */; };
 		C0F573C720B016400012D4E3 /* HHCustomRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F573BD20B016400012D4E3 /* HHCustomRefreshHeader.m */; };
 		C0F573C820B016400012D4E3 /* HHRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F573C220B016400012D4E3 /* HHRefreshComponent.m */; };
 		C0F573C920B016400012D4E3 /* HHRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F573C320B016400012D4E3 /* HHRefreshFooter.m */; };
@@ -34,6 +36,10 @@
 		C05EFE0A20AD6A9F007A84EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C05EFE1120AD6C93007A84EB /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		C05EFE1220AD6C93007A84EB /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		C0EBA37720B273E400B625E7 /* HHRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHRefreshGifHeader.h; sourceTree = "<group>"; };
+		C0EBA37820B273E400B625E7 /* HHRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHRefreshGifHeader.m; sourceTree = "<group>"; };
+		C0EBA37A20B27BDA00B625E7 /* HHRefreshGifFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHRefreshGifFooter.h; sourceTree = "<group>"; };
+		C0EBA37B20B27BDA00B625E7 /* HHRefreshGifFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHRefreshGifFooter.m; sourceTree = "<group>"; };
 		C0F573BD20B016400012D4E3 /* HHCustomRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCustomRefreshHeader.m; sourceTree = "<group>"; };
 		C0F573BE20B016400012D4E3 /* HHRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHRefreshHeader.h; sourceTree = "<group>"; };
 		C0F573BF20B016400012D4E3 /* HHRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHRefreshFooter.h; sourceTree = "<group>"; };
@@ -103,8 +109,12 @@
 				C0F573C320B016400012D4E3 /* HHRefreshFooter.m */,
 				C0F573C520B016400012D4E3 /* HHCustomRefreshHeader.h */,
 				C0F573BD20B016400012D4E3 /* HHCustomRefreshHeader.m */,
-				C0F573C620B016400012D4E3 /* HHCustomFooterView.m */,
+				C0EBA37720B273E400B625E7 /* HHRefreshGifHeader.h */,
+				C0EBA37820B273E400B625E7 /* HHRefreshGifHeader.m */,
+				C0EBA37A20B27BDA00B625E7 /* HHRefreshGifFooter.h */,
+				C0EBA37B20B27BDA00B625E7 /* HHRefreshGifFooter.m */,
 				C0F573C120B016400012D4E3 /* HHCustomFooterView.h */,
+				C0F573C620B016400012D4E3 /* HHCustomFooterView.m */,
 			);
 			path = HHRefresh;
 			sourceTree = "<group>";
@@ -182,6 +192,7 @@
 			files = (
 				C05EFE0020AD6A9F007A84EB /* ViewController.m in Sources */,
 				C05EFE0B20AD6A9F007A84EB /* main.m in Sources */,
+				C0EBA37C20B27BDA00B625E7 /* HHRefreshGifFooter.m in Sources */,
 				C0F573C920B016400012D4E3 /* HHRefreshFooter.m in Sources */,
 				C0F573C720B016400012D4E3 /* HHCustomRefreshHeader.m in Sources */,
 				C0F573CA20B016400012D4E3 /* HHRefreshHeader.m in Sources */,
@@ -189,6 +200,7 @@
 				C0F573CB20B016400012D4E3 /* HHCustomFooterView.m in Sources */,
 				C05EFDFD20AD6A9F007A84EB /* AppDelegate.m in Sources */,
 				C0F573C820B016400012D4E3 /* HHRefreshComponent.m in Sources */,
+				C0EBA37920B273E400B625E7 /* HHRefreshGifHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

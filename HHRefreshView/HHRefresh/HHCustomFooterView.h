@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Qingchifan. All rights reserved.
 //
 
-#import "HHRefreshFooter.h"
+#import "HHRefreshGifFooter.h"
 
-@interface HHCustomFooterView : HHRefreshFooter
+@interface HHCustomFooterView : HHRefreshGifFooter
 
 @end

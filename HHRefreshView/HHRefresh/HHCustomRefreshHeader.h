@@ -6,9 +6,7 @@
 //  Copyright © 2018年 Qingchifan. All rights reserved.
 //
 
-#import "HHRefreshHeader.h"
+#import "HHRefreshGifHeader.h"
 
-@interface HHCustomRefreshHeader : HHRefreshHeader
-+ (instancetype)footerWithRefreshingBlock:(HHRefreshComponentRefreshingBlock)block;
-+ (instancetype)footerWithRefreshingTarget:(id)target action:(SEL)action;
+@interface HHCustomRefreshHeader : HHRefreshGifHeader
 @end
