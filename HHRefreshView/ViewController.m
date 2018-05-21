@@ -79,12 +79,14 @@
 - (void)loadData {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_header endRefresh];
+        _footer.hidden = NO;
     });
 }
 
 - (void)loadMore {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_footer endRefresh];
+        _footer.hidden = YES;
     });
 }
 

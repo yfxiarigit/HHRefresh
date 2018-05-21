@@ -82,6 +82,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([self.superview isKindOfClass:[UIScrollView class]]) {
         _scrollView = (UIScrollView *)self.superview;
+        if (self.hidden) {
+            return;
+        }
         if ([keyPath isEqualToString:@"contentSize"]) {
             [self scrollViewContentSizeDidChange:_scrollView.contentSize];
         }
