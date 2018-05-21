@@ -62,8 +62,8 @@
         outFooterH = moveUpH - (self.scrollView.contentSize.height + [self refreshHeight] - [self scrollHeight]);
     }
     if (outFooterH > 0) {
-        //拖动中：将状态设为 松手刷新
-        if (self.scrollView.isDragging) {
+        //拖动中：将状态设为 松手刷新. 这是使用isTracking 而不是isdragging，因为isDradding在结束
+        if (self.scrollView.isTracking) {
             // 避免重复设置
             if (self.refreshState != RefreshStatePulling) {
                 [self refreshWillPull];

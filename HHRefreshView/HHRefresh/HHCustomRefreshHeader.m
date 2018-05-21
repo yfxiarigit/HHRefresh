@@ -34,10 +34,39 @@
     _label.text = @"下拉刷新";
     //    [self addSubview:_label];
     
-    _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_refresh"]];
+    _imageView = [[UIImageView alloc] init];
     _imageView.contentMode = UIViewContentModeCenter;
+    _imageView.animationDuration = animationTime;
     [self addSubview: _imageView];
+    
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=60; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+        [idleImages addObject:image];
+    }
+    _imageView.animationImages = idleImages;
 }
+
+    
+    
+    // 设置普通状态的动画图片
+//    NSMutableArray *idleImages = [NSMutableArray array];
+//    for (NSUInteger i = 1; i<=60; i++) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+//        [idleImages addObject:image];
+//    }
+//    [self setImages:idleImages forState:MJRefreshStateIdle];
+//
+//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//    NSMutableArray *refreshingImages = [NSMutableArray array];
+//    for (NSUInteger i = 1; i<=3; i++) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+//        [refreshingImages addObject:image];
+//    }
+//    [self setImages:refreshingImages forState:MJRefreshStatePulling];
+//
+//    // 设置正在刷新状态的动画图片
+//    [self setImages:refreshingImages forState:MJRefreshStateRefreshing];
 
 - (void)placeSubviews {
     [super placeSubviews];
@@ -52,17 +81,27 @@
     _label.text = @"松开刷新";
     NSLog(@"松开刷新");
 }
+
+- (void)refreshEndPull {
+    [super refreshEndPull];
+    _label.text = @"下拉刷新";
+}
+
 - (void)willBeginRefresh {
     [super willBeginRefresh];
     _label.text = @"正在刷新";
     NSLog(@"正在刷新");
-    [_imageView.layer removeAllAnimations];
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    animation.duration = animationTime;
-    animation.repeatCount = 1000;
-    animation.fromValue = @(0);
-    animation.toValue = @(M_PI * 2);
-    [_imageView.layer addAnimation:animation forKey:@"rotation"];
+}
+
+- (void)didBeginRefresh {
+    [super didBeginRefresh];
+    NSMutableArray *refreshingImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=3; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+        [refreshingImages addObject:image];
+    }
+    _imageView.animationImages = refreshingImages;
+    [_imageView startAnimating];
 }
 
 - (void)willEndRefresh {
@@ -74,19 +113,31 @@
 - (void)didEndRefresh {
     [super didEndRefresh];
     _label.text = @"下拉刷新";
-    [_imageView.layer removeAllAnimations];
+//    [_imageView.layer removeAllAnimations];
     NSLog(@"下拉刷新");
+    [_imageView stopAnimating];
+    
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=60; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+        [idleImages addObject:image];
+    }
+    _imageView.animationImages = idleImages;
+    
 }
 
-- (void)refreshEndPull {
-    [super refreshEndPull];
-    _label.text = @"下拉刷新";
-}
 
 - (void)refreshPullingWithPercent:(CGFloat)percent {
     [super refreshPullingWithPercent:percent];
     _label.text = [NSString stringWithFormat:@"松开刷新%.2f", percent];
-    _imageView.transform = CGAffineTransformMakeRotation(percent * M_PI * 2);
+    if (percent > 1) {
+        percent = 1;
+    }
+    NSInteger count = _imageView.animationImages.count;
+    if (count > 0) {
+        NSInteger index = (int)(count-1) * percent;
+        _imageView.image = _imageView.animationImages[index];
+    }
 }
 
 @end
