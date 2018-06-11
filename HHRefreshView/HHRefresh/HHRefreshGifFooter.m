@@ -71,6 +71,7 @@
 - (void)didEndRefresh {
     [super didEndRefresh];
     [self.imageView stopAnimating];
+    self.imageView.image = nil;
 }
 
 - (void)placeSubviews {

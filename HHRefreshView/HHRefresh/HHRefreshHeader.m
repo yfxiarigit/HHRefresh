@@ -42,9 +42,10 @@
     }
     
     // 当header完全显示的时候：
-    if (self.scrollView.contentOffset.y <= -(self.scrollView.contentInset.top + self.bounds.size.height)) {
+    if (self.scrollView.contentOffset.y < -(self.scrollView.contentInset.top + self.bounds.size.height)) {
+        NSLog(@"%d", self.scrollView.isTracking);
         //如果是拖动中，进入了松手刷新状态：
-        if (self.scrollView.isDragging) {
+        if (self.scrollView.isTracking) {
             // 避免松手刷新一直调用
             if (self.refreshState != RefreshStatePulling) {
                 [self refreshWillPull];

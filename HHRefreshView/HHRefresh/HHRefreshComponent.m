@@ -134,7 +134,7 @@
 }
 
 - (void)didEndRefresh {
-    self.refreshState = RefreshStateDidEndRefreshing;
+    self.refreshState = RefreshStateIdle;
 }
 
 - (void)refreshWillPull {

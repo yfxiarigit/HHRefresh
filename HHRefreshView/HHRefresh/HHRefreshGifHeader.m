@@ -46,16 +46,41 @@
 
 - (void)refreshPullingWithPercent:(CGFloat)percent {
     [super refreshPullingWithPercent:percent];
-    [self.imageView stopAnimating];
     NSArray *images = self.stateImagesDict[@(RefreshStatePulling)];
     NSInteger count = images.count;
-    if (count > 0 && percent > 0.3) {
-        if (percent > 1.3) {
-            percent = 1.3;
-        }
-        NSInteger index = (count - 1) * (percent - 0.3);
+    if (count > 0 && percent > 0.3 && percent < 1.0) {
+        [self.imageView stopAnimating];
+        NSInteger index = (count - 1) * percent;
         self.imageView.image = images[index];
     }
+}
+
+- (void)refreshWillPull {
+    [super refreshWillPull];
+    
+    NSArray *images = self.stateImagesDict[@(RefreshStateDidBeginRefreshing)];
+    NSTimeInterval duration = [self.stateDurationsDict[@(RefreshStateDidBeginRefreshing)] floatValue];
+//    self.imageView.image = nil;
+    self.imageView.animationImages = images;
+    self.imageView.animationDuration = duration;
+    [self.imageView startAnimating];
+}
+
+- (void)refreshEndPull {
+    [super refreshEndPull];
+    [self.imageView stopAnimating];
+}
+
+- (void)willBeginRefresh {
+    if (self.refreshState == RefreshStateIdle) {
+        
+        NSArray *images = self.stateImagesDict[@(RefreshStateDidBeginRefreshing)];
+        NSTimeInterval duration = [self.stateDurationsDict[@(RefreshStateDidBeginRefreshing)] floatValue];
+        self.imageView.animationImages = images;
+        self.imageView.animationDuration = duration;
+        [self.imageView startAnimating];
+    }
+    [super willBeginRefresh];
 }
 
 - (void)didBeginRefresh {
@@ -70,6 +95,7 @@
 - (void)didEndRefresh {
     [super didEndRefresh];
     [self.imageView stopAnimating];
+    self.imageView.image = nil;
 }
 
 - (void)placeSubviews {

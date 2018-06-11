@@ -19,8 +19,6 @@ typedef NS_ENUM(NSUInteger, RefreshState) {
     RefreshStateDidBeginRefreshing,
     /** 将要结束刷新 */
     RefreshStateWillEndRefreshing,
-    /** 已经结束刷新 */
-    RefreshStateDidEndRefreshing,
     /** 结束刷新中 */
     RefreshStateEndRefresh,
 };
